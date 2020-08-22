@@ -22,6 +22,8 @@ coin_flip_balance = starting_balance
 def coin_flip(guess, bet):
   global coin_flip_balance
   print('\n')
+
+  #Check the player wants to play this table
   coin_flip_question = input('Press Y to play the Coin Flip table: ')
   if coin_flip_question.lower() == 'y':
     print('\n')
@@ -32,6 +34,8 @@ def coin_flip(guess, bet):
     print('You have bet: £' + str(bet))
     print('Your choice is "' + guess + '"')
     print('\n')
+
+    #Random coin flip answer
     coin = random.randint(1, 2)
     if coin == 1:
       coin = 'Heads'
@@ -45,6 +49,8 @@ def coin_flip(guess, bet):
     return print('Press Y next time to play the Coin Flip table')
   time.sleep(2)
   print('\n')
+
+  #Coin flip winner checker
   if guess.lower() == coin.lower():
     coin_flip_balance = coin_flip_balance + int(bet)
     print('Your prediction of "' + guess + '" was correct')
@@ -63,12 +69,14 @@ cho_han_balance = coin_flip_balance
 #Cho-Han table
 def cho_han(guess, bet):
     global cho_han_balance
+
     cho_han_balance = coin_flip_balance
     print('\n')
     print('You walk over to the Cho-Han table')
     print('Your money is now ' + str(cho_han_balance))
     print('\n')
 
+    #Check the player wants to play this table
     cho_han_question = input('Press Y to play the Cho-Han game: ')
     if cho_han_question.lower() == 'y':
       if bet < 0:
@@ -83,7 +91,8 @@ def cho_han(guess, bet):
     print('Your choose an "' + guess + '" number')
     print('You have bet: ' + str(bet))
     print('\n')
-    
+
+    #Random dice numbers
     dice_number1 = randint(1,6)
     print('Dice number 1 is rolling a....')
     time.sleep(2)
@@ -97,7 +106,9 @@ def cho_han(guess, bet):
     print('These dice comes to: ' + total)
 
     time.sleep(2)
-    print('\n')       
+    print('\n')
+
+    #Odd or even check against guess
     if (int(total) % 2) == 0 and guess.lower() == 'even':
         cho_han_balance += int(bet)
         print('Your prediction of an "' + guess + '" number was correct!')
@@ -128,6 +139,8 @@ def two_card(bet):
     print('\n')
     deck = ['2', '3', '4', '5', '6', '7', '8', '9', 'Jack', 'Queen', 'King', 'Ace']*4
     two_card_question = input('Press Y to play the Two Card game: ')
+
+    #Check the player wants to play this table
     if two_card_question.lower() == 'y':
         if bet < 0:
           return print('*Please use a positive betting amount next time*')
@@ -135,7 +148,8 @@ def two_card(bet):
         print('\n')
         print('You have bet: £' + str(bet))
         print('\n')
-        
+
+        #Random card choice's
         time.sleep(2)
         player_one_pick = random.choice(deck)
         if player_one_pick in deck:
@@ -151,6 +165,7 @@ def two_card(bet):
         print('\n')
         return print('Press Y next time to play the Two Card table')    
 
+    # Check who wins
     time.sleep(1)
     print('\n')
     if(player_one_pick == player_two_pick):
@@ -243,12 +258,12 @@ def roulette(number, colour, odd_or_even, bet):
         if player_roulette_choice == roulette_number:
             print('Well done you guessed the correct number')
             print('You won £' + str(int(bet)* 35))
-            roulette_balance =  roulette_balance + int(bet) * 35
+            roulette_balance += int(bet) * 35
             print('Your have a balance of £' + str(roulette_balance))
         else: 
             print('Number ' + str(player_roulette_choice) + ' was the wrong number')
             print('You lost £' + str(bet))
-            roulette_balance = roulette_balance - int(bet)
+            roulette_balance -= int(bet)
             print('Your have a balance of £' + str(roulette_balance))
     time.sleep(2)   
     #Red or Black answer
@@ -263,17 +278,17 @@ def roulette(number, colour, odd_or_even, bet):
         if red_or_black_choice.lower() == 'red' and roulette_number in red_numbers:
            print('Well done you won on red!')
            print('You won £' + str(bet))
-           roulette_balance = roulette_balance + int(bet)
+           roulette_balance += int(bet)
            print('Your have a balance of £' + str(roulette_balance))
         elif red_or_black_choice.lower() == 'black' and roulette_number in black_numbers:
             print('Well done you won on ' + red_or_black_choice + '!')
             print('You won £' + str(bet))
-            roulette_balance = roulette_balance + int(bet)
+            roulette_balance += + int(bet)
             print('Your have a balance of £' + str(roulette_balance))
         else:
             print('Your guess of "' + red_or_black_choice + '" for red or black was incorrect')
             print('You lost £' + str(bet))
-            roulette_balance = roulette_balance - int(bet)
+            roulette_balance -= int(bet)
             print('Your have a balance of £' + str(roulette_balance))
 
     time.sleep(2) 
@@ -281,7 +296,7 @@ def roulette(number, colour, odd_or_even, bet):
     if roulette_number == 0:
        print('Your guess of "' + player_odd_even_choice + '" for odd or even was incorrect')
        print('You lost £' + str(bet))
-       roulette_balance = roulette_balance - int(bet)
+       roulette_balance -= int(bet)
        return print('Your have a balance of £' + str(roulette_balance))
     if odd_or_even_question.lower() == 'y':
         time.sleep(2)
@@ -289,19 +304,20 @@ def roulette(number, colour, odd_or_even, bet):
         if(roulette_number % 2) == 0 and player_odd_even_choice.lower() == 'even':
              print('Well done you correctly guess even')
              print('You won £' + str(bet))
-             roulette_balance = roulette_balance + int(bet)
+             roulette_balance += int(bet)
              print('Your have a balance of £' + str(roulette_balance))
         elif(roulette_number % 2) == 1 and player_odd_even_choice.lower() == 'odd':
             print('Well done "' + player_odd_even_choice + '" was the correct guess!')
             print('You won £' + str(bet))
-            roulette_balance = roulette_balance + int(bet)
+            roulette_balance += int(bet)
             print('Your have a balance of £' + str(roulette_balance))
         else:
             print('Your guess of "' + player_odd_even_choice + '" for odd or even was incorrect')
             print('You lost £' + str(bet))
-            roulette_balance = roulette_balance - int(bet)
+            roulette_balance -= int(bet)
             print('Your have a balance of £' + str(roulette_balance))
-
+            
+# Winner or loser balance checker 
 def end_balance():        
   time.sleep(2) 
   print('\n')
